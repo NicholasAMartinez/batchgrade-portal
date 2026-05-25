@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { GoogleLogo } from "@/components/google-logo";
+import { GoogleAuthButton } from "@/components/google-oauth";
 
 export function LoginForm({
   className,
@@ -98,10 +98,7 @@ export function LoginForm({
               </div>
 
               {/* Google OAuth */}
-              <Button>
-                <GoogleLogo />
-                Continue with Google
-              </Button>
+              <GoogleAuthButton />
 
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
