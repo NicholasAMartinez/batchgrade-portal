@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { GoogleLogo } from "@/components/google-logo";
 
 export function LoginForm({
   className,
@@ -88,6 +89,20 @@ export function LoginForm({
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+
+              {/* Divider */}
+              <div className="flex p-1 items-center">
+                <div className="flex-auto border-t"></div>
+                <span className="mx-4">Or</span>
+                <div className="flex-auto border-t"></div>
+              </div>
+
+              {/* Google OAuth */}
+              <Button>
+                <GoogleLogo />
+                Continue with Google
+              </Button>
+
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
