@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { GoogleAuthButton } from "@/components/google-oauth";
+import { GithubAuthButton } from "@/components/github-oauth";
 
 export function LoginForm({
   className,
@@ -99,6 +100,9 @@ export function LoginForm({
 
               {/* Google OAuth */}
               <GoogleAuthButton />
+
+              {/* Github OAuth */}
+              <GithubAuthButton />
 
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
