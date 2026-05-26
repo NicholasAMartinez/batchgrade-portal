@@ -2,16 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -47,33 +37,42 @@ export function ForgotPasswordForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       {success ? (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Check Your Email</CardTitle>
-            <CardDescription>Password reset instructions sent</CardDescription>
-          </CardHeader>
-          <CardContent>
+        <div className="rounded-lg border bg-background text-foreground shadow-sm">
+          <div className="flex flex-col space-y-1.5 p-6">
+            <h1 className="text-2xl font-semibold leading-none tracking-normal">
+              Check Your Email
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Password reset instructions sent
+            </p>
+          </div>
+          <div className="p-6 pt-0">
             <p className="text-sm text-muted-foreground">
               If you registered using your email and password, you will receive
               a password reset email.
             </p>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       ) : (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Reset Your Password</CardTitle>
-            <CardDescription>
+        <div className="rounded-lg border bg-background text-foreground shadow-sm">
+          <div className="flex flex-col space-y-1.5 p-6">
+            <h1 className="text-2xl font-semibold leading-none tracking-normal">
+              Reset Your Password
+            </h1>
+            <p className="text-sm text-muted-foreground">
               Type in your email and we&apos;ll send you a link to reset your
               password
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+            </p>
+          </div>
+          <div className="p-6 pt-0">
             <form onSubmit={handleForgotPassword}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
+                  <label className="text-sm font-medium" htmlFor="email">
+                    Email
+                  </label>
+                  <input
+                    className="h-10 w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                     id="email"
                     type="email"
                     placeholder="m@example.com"
@@ -83,9 +82,13 @@ export function ForgotPasswordForm({
                   />
                 </div>
                 {error && <p className="text-sm text-red-500">{error}</p>}
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <button
+                  type="submit"
+                  className="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50"
+                  disabled={isLoading}
+                >
                   {isLoading ? "Sending..." : "Send reset email"}
-                </Button>
+                </button>
               </div>
               <div className="mt-4 text-center text-sm">
                 Already have an account?{" "}
@@ -97,8 +100,8 @@ export function ForgotPasswordForm({
                 </Link>
               </div>
             </form>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       )}
     </div>
   );
