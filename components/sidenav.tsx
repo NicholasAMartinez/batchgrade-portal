@@ -8,8 +8,8 @@ import { BatchGradeLogo } from "@/components/bg-logo";
 
 // Interface to define the member variables of a sidenav item
 interface SidenavItem {
-  label: string;    // The text displayed for each item
-  value: string;    // "login", "sign-up", some content value 
+  label: string | null;     // The text displayed for each item
+  value: string;            // "login", "sign-up", some content value 
 }
 
 // Set of properties that need to be passed to this component.
@@ -22,7 +22,7 @@ interface SidenavProps {
 export function Sidenav(props: SidenavProps) {
   const listItems = props.items.map(item => 
     <li
-      className="border border-blue-500 cursor-pointer pl-1 pb-1 pt-1 mb-1"
+      className={`border border-blue-500 cursor-pointer hover:bg-sky-700 pl-1 pb-1 pt-1 mb-1 ${props.activeItem === item.value ? "bg-sky-700" : ""}`}
       key={item.value}
       onClick={() => props.onItemClick(item.value)}>
       {item.label}
