@@ -5,6 +5,7 @@
  */
 
 import { BatchGradeLogo } from "@/components/bg-logo";
+import { LogoutButton } from "@/components/auth/logout-button"
 
 // Interface to define the member variables of a sidenav item
 export interface SidenavItem {
@@ -17,6 +18,7 @@ interface SidenavProps {
   items: SidenavItem[];
   activeItem: string | null;
   onItemClick: (value: string | null) => void;
+  showLogout?: boolean;
 }
 
 export function Sidenav(props: SidenavProps) {
@@ -62,6 +64,13 @@ export function Sidenav(props: SidenavProps) {
             {listItems}
           </ul>
         </nav>
+
+        {/* Toggle LogoutButton instead of wasting time checking if they are logged in */}
+        {props.showLogout && (
+          <div className="mt-auto">
+            <LogoutButton />
+          </div>
+        )}
       </aside>
     </>
   );
