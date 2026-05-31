@@ -5,8 +5,8 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { GoogleAuthButton } from "@/components/google-oauth";
-import { GithubAuthButton } from "@/components/github-oauth";
+import { GoogleAuthButton } from "@/components/auth/oauth/google-oauth";
+import { GithubAuthButton } from "@/components/auth/oauth/github-oauth";
 
 export function SignUpForm({
   className,

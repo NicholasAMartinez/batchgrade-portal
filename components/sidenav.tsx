@@ -7,7 +7,7 @@
 import { BatchGradeLogo } from "@/components/bg-logo";
 
 // Interface to define the member variables of a sidenav item
-interface SidenavItem {
+export interface SidenavItem {
   label: string | null;     // The text displayed for each item
   value: string;            // "login", "sign-up", some content value 
 }
@@ -15,7 +15,7 @@ interface SidenavItem {
 // Set of properties that need to be passed to this component.
 interface SidenavProps {
   items: SidenavItem[];
-  activeItem: string;
+  activeItem: string | null;
   onItemClick: (value: string | null) => void;
 }
 

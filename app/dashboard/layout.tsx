@@ -1,8 +1,8 @@
-import { AuthButton } from "@/components/auth-button";
+import { AuthButton } from "@/components/auth/auth-button";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export default function ProtectedLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -24,6 +24,7 @@ export default function ProtectedLayout({
           </div>
         </nav>
 
+        {children}
       </div>
     </main>
   );

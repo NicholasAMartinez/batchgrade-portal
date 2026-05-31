@@ -1,12 +1,13 @@
 "use client";
 
 import { LandingContent } from "@/components/landing-content"
-import { SignUpForm } from "@/components/sign-up-form";
-import { LoginForm } from "@/components/login-form";
+import { SignUpForm } from "@/components/auth/sign-up-form";
+import { LoginForm } from "@/components/auth/login-form";
 import { Sidenav } from "@/components/sidenav";
 import { useState } from "react";
+import type { SidenavItem } from "@/components/sidenav";
 
-const sidenavItems = [
+const sidenavItems: SidenavItem[] = [
   { label: "Login", value: "login" },
   { label: "Sign Up", value: "sign-up" }
 ];
