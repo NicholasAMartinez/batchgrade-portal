@@ -2,10 +2,11 @@
 
 import { Sidenav } from "@/components/sidenav";
 import { useState } from "react";
+import { DashboardContent } from "@/components/dashboard/dashboard"
 import type { SidenavItem } from "@/components/sidenav";
 
 const sidenavItems: SidenavItem[] = [
-  { label: "Place Holder", value: "placeholder" }
+  { label: "Other", value: "other" }
 ];
 
 export default function Home() {
@@ -25,15 +26,11 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex flex-1 items-center justify-center">
         {/* Default Landing Content */}
-        {!activeItem && (
-          <div>
-            Example default
-          </div>
-        )}
+        {!activeItem && ( <DashboardContent /> )}
 
-        {activeItem === "placeholder" && (
-          <div>
-            Sample
+        {activeItem === "other" && (
+          <div className="text-xl">
+            This is simply an example of how it could be extended or CRUD features separated into their own "pages".
           </div>
         )}
 
