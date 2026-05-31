@@ -31,7 +31,7 @@ export function LoginForm({
       });
       if (error) throw error;
       // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+      router.push("/dashboard");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -40,7 +40,7 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6 min-w-[350px]", className)} {...props}>
       <div className="rounded-lg border bg-background text-foreground shadow-sm">
         <div className="flex flex-col space-y-1.5 p-6">
           <h1 className="text-2xl font-semibold leading-none tracking-normal">
@@ -105,7 +105,7 @@ export function LoginForm({
               {error && <p className="text-sm text-red-500">{error}</p>}
               <button
                 type="submit"
-                className="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50"
+                className="border border-[var(--ring)] text-[var(--ring)] inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium hover:bg-white/10 disabled:pointer-events-none disabled:opacity-50"
                 disabled={isLoading}
               >
                 {isLoading ? "Logging in..." : "Login"}
