@@ -1,38 +1,40 @@
-import { redirect } from "next/navigation";
+"use client";
 
-import { createClient } from "@/lib/supabase/server";
-import { InfoIcon } from "lucide-react";
-import { Suspense } from "react";
+import { Sidenav } from "@/components/sidenav";
+import { useState } from "react";
+import { DashboardContent } from "@/components/dashboard/dashboard"
+import type { SidenavItem } from "@/components/sidenav";
 
-async function UserDetails() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.getClaims();
+const sidenavItems: SidenavItem[] = [
+  { label: "Other", value: "other" }
+];
 
-  if (error || !data?.claims) {
-    redirect("/auth/login");
-  }
+export default function Home() {
+  const [activeItem, setActiveItem] = useState<string | null>(null);
 
-  return JSON.stringify(data.claims, null, 2);
-}
-
-export default function Dashboard() {
   return (
-    <div className="flex-1 w-full flex flex-col gap-12">
-      <div className="w-full">
-        <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
-          <InfoIcon size="16" strokeWidth={2} />
-          This is a placeholder for the Dashboard
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 items-start">
-        <h2 className="font-bold text-2xl mb-4">Your user details</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-          <Suspense>
-            <UserDetails />
-          </Suspense>
-        </pre>
-      </div>
+    /* The Page */
+    <div className="flex flex-row">
+      {/* Sidenav */}
+      <Sidenav
+        items={sidenavItems}
+        activeItem={activeItem}
+        onItemClick={setActiveItem}
+        showLogout={true}             // Users are logged in at this point.
+      />
 
+      {/* Main Content */}
+      <main className="flex flex-1 items-center justify-center">
+        {/* Default Landing Content */}
+        {!activeItem && ( <DashboardContent /> )}
+
+        {activeItem === "other" && (
+          <div className="text-xl">
+            This is simply an example of how it could be extended or CRUD features separated into their own "pages".
+          </div>
+        )}
+
+      </main>
     </div>
   );
 }
