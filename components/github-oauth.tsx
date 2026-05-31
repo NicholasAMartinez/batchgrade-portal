@@ -27,7 +27,7 @@ export function GithubAuthButton() {
     <button
       type="button"
       onClick={handleGithubSignIn}
-      className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+      className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-white/10 hover:text-accent-foreground"
     >
       {/* SVG generated using AI. It is not ideal, but it is good enough for now. */}
       <svg className="size-5" viewBox="0 0 24 24" aria-hidden="true">
