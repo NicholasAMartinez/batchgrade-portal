@@ -20,21 +20,28 @@ interface SidenavProps {
 }
 
 export function Sidenav(props: SidenavProps) {
+  // https://react.dev/learn/rendering-lists
+  // Example of how to render a list
   const listItems = props.items.map(item => 
     <li
-      className={`border border-blue-500 cursor-pointer hover:bg-sky-700 pl-1 pb-1 pt-1 mb-1 ${props.activeItem === item.value ? "bg-sky-700" : ""}`}
+      className={`cursor-pointer rounded-md pl-3 p-2 mb-1 
+      ${
+        props.activeItem === item.value
+          ? "bg-[var(--nav-active)] text-[var(--nav-active-foreground)]"
+          : "text-[var(--foreground)] hover:bg-[var(--nav-hover)]"
+      }`}
       key={item.value}
       onClick={() => props.onItemClick(item.value)}>
       {item.label}
     </li>
   );
+  
   return (
     <>
       {/* Sidenav */}
-      <aside className="flex flex-col border border-black h-screen w-52">
+      <aside className="flex flex-col h-screen w-52 border-r">
         {/* Sidenav Title */}
-        <header className="flex items-center border-b border-green-500 h-16 w-full p-4 text-xl">
-          
+        <header className="border-b h-16 w-full p-2 pl-5 text-xl">
           <button
             type="button"
             className="flex items-center"
@@ -42,9 +49,9 @@ export function Sidenav(props: SidenavProps) {
             onClick={() => props.onItemClick(null)}
           >
             <BatchGradeLogo />
-            <div className="ml-4 border">
+            <div className="ml-4">
               Batch
-              <span className="text-green-950"> Grade </span>
+              <span className="text-[var(--primary)]"> Grade </span>
             </div>
           </button>
         </header>
@@ -57,5 +64,5 @@ export function Sidenav(props: SidenavProps) {
         </nav>
       </aside>
     </>
-  )
+  );
 }

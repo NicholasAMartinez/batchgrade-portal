@@ -1,22 +1,23 @@
 "use client";
+
+import { LandingContent } from "@/components/landing-content"
+import { SignUpForm } from "@/components/sign-up-form";
+import { LoginForm } from "@/components/login-form";
 import { Sidenav } from "@/components/sidenav";
 import { useState } from "react";
-import { LoginForm } from "@/components/login-form";
-import { SignUpForm } from "@/components/sign-up-form";
+
+const sidenavItems = [
+  { label: "Login", value: "login" },
+  { label: "Sign Up", value: "sign-up" }
+];
 
 
 export default function Home() {
-  const sidenavItems = [
-    { label: "Login", value: "login" },
-    { label: "Sign Up", value: "sign-up" },
-  ];
-
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   return (
     /* The Page */
-    <div className="flex flex-row ">
-
+    <div className="flex flex-row">
       {/* Sidenav */}
       <Sidenav
         items={sidenavItems}
@@ -25,25 +26,13 @@ export default function Home() {
       />
 
       {/* Main Content */}
-      <main className="flex items-center justify-center border border-red-500 h-screen flex-1">
-        
-          {!activeItem && (
-            <div>
-              Home Content
-            </div>
-          )}
+      <main className="flex flex-1 items-center justify-center">
+        {/* Default Landing Content */}
+        {!activeItem && <LandingContent />}
 
-          {activeItem === "login" && (
-            <div>
-              <LoginForm />
-            </div>
-          )}
+        {activeItem === "login" && <LoginForm />}
 
-          {activeItem === "sign-up" && (
-            <div>
-              <SignUpForm />
-            </div>
-          )}
+        {activeItem === "sign-up" && <SignUpForm />}
       </main>
     </div>
   );
