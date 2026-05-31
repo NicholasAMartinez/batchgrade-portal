@@ -5,6 +5,8 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { GoogleAuthButton } from "@/components/google-oauth";
+import { GithubAuthButton } from "@/components/github-oauth";
 
 export function SignUpForm({
   className,
@@ -34,7 +36,7 @@ export function SignUpForm({
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
+          emailRedirectTo: `${window.location.origin}/dashboard`,
         },
       });
       if (error) throw error;
@@ -47,7 +49,7 @@ export function SignUpForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6 min-w-[350px]", className)} {...props}>
       <div className="rounded-lg border bg-background text-foreground shadow-sm">
         <div className="flex flex-col space-y-1.5 p-6">
           <h1 className="text-2xl font-semibold leading-none tracking-normal">
@@ -105,10 +107,24 @@ export function SignUpForm({
                   onChange={(e) => setRepeatPassword(e.target.value)}
                 />
               </div>
+
+              {/* Divider */}
+              <div className="flex p-1 items-center">
+                <div className="flex-auto border-t"></div>
+                <span className="mx-4">Or</span>
+                <div className="flex-auto border-t"></div>
+              </div>
+
+              {/* Google OAuth */}
+              <GoogleAuthButton />
+
+              {/* GitHub OAuth */}
+              <GithubAuthButton />
+
               {error && <p className="text-sm text-red-500">{error}</p>}
               <button
                 type="submit"
-                className="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50"
+                className="border border-[var(--ring)] text-[var(--ring)] inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium hover:bg-white/10 disabled:pointer-events-none disabled:opacity-50"
                 disabled={isLoading}
               >
                 {isLoading ? "Creating an account..." : "Sign up"}
